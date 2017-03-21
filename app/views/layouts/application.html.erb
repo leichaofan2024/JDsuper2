@@ -11,7 +11,11 @@
   <body>
     <div class="container-fluid">
       <%= render "common/navbar" %>
-      <%= yield %>
+      <div class="container" style="margin-top:60px">
+        <%= render "common/flashes" %>
+        <%= yield %>  
+      </div>
+
     </div>
     <%= render "common/footer" %>
   </body>
