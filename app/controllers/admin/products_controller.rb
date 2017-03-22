@@ -7,7 +7,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find([:id])
+    @product = Product.find(params[:id])
   end
   def new
     @product = Product.new
