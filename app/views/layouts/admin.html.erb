@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JDsuper2</title>
+    <title>JDsuper后台</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,6 +13,11 @@
       <%= render "common/navbar" %>
       <div class="container" style="margin-top:80px">
         <%= render "common/flashes" %>
+        <div class="col-md-2">
+          <ul class="nav nav-pills nav-stacked" style = "max-width: 300px;">
+            <li><%= link_to("Products", admin_products_path) %></li>
+          </ul>
+        </div>
         <%= yield %>
       </div>
 
