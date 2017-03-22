@@ -1,0 +1,19 @@
+<div class="col-md-10">
+  <h2>上传新品</h2>
+  <hr>
+  <%= simple_form_for [:admin,@product] do |f| %>
+    <div class="group">
+      <%= f.input :title %>
+    </div>
+    <div class="group">
+      <%= f.input :description %>
+    </div>
+    <div class= "group">
+      <%= f.input :price %>
+    </div>
+    <div class= "group">
+      <%= f.input :quantity %>
+    </div>
+    <%= f.submit "Submit", data: {disable_with: "Submitting..."} %>
+  <% end %>
+</div>
