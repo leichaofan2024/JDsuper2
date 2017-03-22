@@ -1,5 +1,6 @@
 class Admin::ProductsController < ApplicationController
-
+  before_action :authenticate_user!
+  before_action :require_is_admin
   def index
     @products = Product.all
   end
@@ -34,7 +35,6 @@ class Admin::ProductsController < ApplicationController
     @product.destroy
     redirect_to admin_products_path, alert: "已成功删除！"
   end
-
 
   private
 
