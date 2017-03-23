@@ -6,7 +6,15 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, alert: "你小子不是管理员！"
     end
   end
-
+  def total_price
+    sum = 0
+    cart.cart_items.each do |cart_item|
+      if cart_item.product.price.present?
+        sum += cart_item.quantity*cart_item.product.price
+      end
+    end
+    sum
+  end
   helper_method :current_cart
 
   def current_cart
@@ -23,5 +31,5 @@ class ApplicationController < ActionController::Base
     end
     session[:cart_id] = cart.id
     return cart
-  end 
+  end
 end
