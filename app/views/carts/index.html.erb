@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <h2>购物车</h2>
+    <%= link_to("清空购物车", cart_clean_cart_path(current_cart), method: :post, data: {:confirm => "Are you sure?"}, class: "btn btn-danger btn-lg pull-right")%>
     <table class="table table-bordered">
       <thead>
         <tr>
