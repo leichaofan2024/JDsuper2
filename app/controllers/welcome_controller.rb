@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
   def index
-    flash[:notice] = "nihao!"
-  end 
+    flash[:notice] = "欢迎来到JDsuper!"
+  end
 end
