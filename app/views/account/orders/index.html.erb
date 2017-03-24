@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>订单号</th>
+          <th>订购人</th>
+          <th>订购时间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order|%>
+          <tr>
+            <td><%= link_to(order.token, order_path(order.token)) %></td>
+            <td><%= order.billing_name %></td>
+            <td><%= order.created_at.to_s(:long) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
