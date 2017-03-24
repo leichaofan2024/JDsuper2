@@ -16,5 +16,6 @@ Rails.application.routes.draw do
       post :checkout
     end
   end
+  resources :orders 
   resources :cart_items
 end

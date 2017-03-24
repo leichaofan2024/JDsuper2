@@ -4,4 +4,7 @@ class CartsController < ApplicationController
     current_cart.cart_items.destroy_all
     redirect_to :back, alert:"成功清除购物车！"
   end
+  def checkout
+    @order = Order.new
+  end 
 end
