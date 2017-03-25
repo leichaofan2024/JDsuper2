@@ -22,6 +22,20 @@ class OrdersController < ApplicationController
     end
   end
 
+  def pay_with_wechat
+    @order = Order.find_by_token(params[:id])
+    @order.set_payment_with!("wechat")
+    @order.pay!
+    redirect_to :back, notice: "用微信付款成功！"
+  end
+
+  def pay_with_alipay
+    @order = Order.find_by_token(params[:id])
+    @order.set_payment_with!("alipay")
+    @order.pay!
+    redirect_to :back, notice: "用支付宝付款成功！"
+  end
+  
   private
 
   def order_params
