@@ -16,6 +16,8 @@ class OrdersController < ApplicationController
         product_list.quantity = cart_item.quantity
         product_list.save
       end
+      current_cart.clean!
+      OrderMailer.notify_order_placed(@order).deliver!
       redirect_to order_path(@order.token)
     else
       render "carts/checkout"
@@ -35,7 +37,7 @@ class OrdersController < ApplicationController
     @order.pay!
     redirect_to :back, notice: "用支付宝付款成功！"
   end
-  
+
   private
 
   def order_params
