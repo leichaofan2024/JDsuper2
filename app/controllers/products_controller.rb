@@ -2,6 +2,9 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    if params[:favorite] == "yes"
+      @products = current_user.products
+    end
   end
   def show
     @product = Product.find(params[:id])
@@ -17,5 +20,17 @@ class ProductsController < ApplicationController
       flash[:warning] = "购物车已有此类商品，请勿重复添加！"
       redirect_to products_path
     end
+  end
+  def add_to_favorite
+    @product = Product.find(params[:id])
+    @product.users << current_user
+    @product.save
+    redirect_to :back, notice: "成功加入收藏！"
+  end
+  def quit_favorite
+    @product = Product.find(params[:id])
+    @product.users.delete(current_user)
+    @product.save
+    redirect_to :back, alert: "已取消收藏!"
   end
 end

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   end
   resources :products do
     member do
+      post :add_to_favorite
+      post :quit_favorite 
       post :add_to_cart
     end
   end
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
     member do
       post :pay_with_wechat
       post :pay_with_alipay
-      post :apply_to_cancel 
+      post :apply_to_cancel
     end
   end
   resources :cart_items
