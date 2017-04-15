@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
+  before_action :authenticate_user!, only:[:add_to_favorite, :quit_favorite]
   def index
     @products = Product.all
     if params[:favorite] == "yes"
