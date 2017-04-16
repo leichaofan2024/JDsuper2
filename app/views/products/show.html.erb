@@ -1,6 +1,13 @@
 <div class="col-md-6 col-xs-12">
-  <% if @product.image.present? %>
-    <%= image_tag(@product.image.medium.url, class: "thumbnail") %>
+  <% if @product.photos.present? %>
+    <% @photos.each_with_index do |p, index| %>
+      <% if index == 0 %>
+       <%= image_tag(p.avatar.medium.url, class: "thumbnail") %>
+      <% end %>
+      <% if index < 5 %>
+       <%= image_tag(p.avatar.small.url) %>
+      <% end %>
+    <% end %>
   <% else %>
     <%= image_tag("http://placehold.it/400x400&text=No Pic", class: "thumbnail") %>
   <% end %>

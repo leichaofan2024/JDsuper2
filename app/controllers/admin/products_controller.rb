@@ -11,11 +11,17 @@ class Admin::ProductsController < ApplicationController
   end
   def new
     @product = Product.new
+    @photos = @product.photos.build
   end
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to admin_products_path, notice: "创建成功！"
+      if params[:photos] != nil
+        params[:photos]["avatar"].each do |a|
+          @product.photos.create(:avatar => a)
+        end
+        redirect_to admin_products_path, notice: "创建成功！"
+      end
     else
       render :new
     end
@@ -25,7 +31,14 @@ class Admin::ProductsController < ApplicationController
   end
   def update
     @product = Product.find(params[:id])
-    if @product.update(product_params)
+    if params[:photos] != nil
+      @product.photos.destroy_all
+      params[:photos]["avatar"].each do |a|
+        @product.photos.create(:avatar => a)
+      end
+      @product.update(product_params)
+      redirect_to admin_products_path, notice: "更新成功！"
+    elsif @product.update(product_params)
       redirect_to admin_products_path, notice: "更新成功！"
     else
       render :edit
